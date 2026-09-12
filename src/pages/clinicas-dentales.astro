@@ -1,0 +1,147 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Software para clínicas dentales en Madrid · Aurelio Software';
+const description =
+  'Agenda online, recordatorios por WhatsApp, seguimiento de presupuestos e integración con tu software dental. Para clínicas dentales de Madrid. Diagnóstico gratuito.';
+
+const faq = [
+  {
+    q: '¿Trabajáis con clínicas que ya tienen software instalado?',
+    a: 'Sí, es lo más habitual. En la mayoría de casos no hace falta cambiar de programa, sino conectarlo con otras herramientas o automatizar lo que ahora se hace a mano. Analizo lo que tienes antes de proponer nada.',
+  },
+  {
+    q: '¿Podéis reducir las ausencias a las citas?',
+    a: 'Sí, es de lo que más se pide y de lo que antes se notan los resultados. Los recordatorios automáticos por WhatsApp el día anterior reducen las ausencias de forma notable en pocas semanas, y recepción deja de llamar paciente por paciente.',
+  },
+  {
+    q: '¿Cuánto cuesta digitalizar una clínica dental pequeña?',
+    a: 'Depende del alcance, pero trabajo por fases para que cada una se pague sola antes de abordar la siguiente. La primera reunión de diagnóstico es gratuita y de ahí sale un presupuesto cerrado, sin sorpresas.',
+  },
+  {
+    q: '¿Cómo protegéis los datos de los pacientes?',
+    a: 'Los datos de salud son de categoría especial según el RGPD. Cifrado, control de accesos por usuario y registro de actividad vienen de serie, no como extra opcional.',
+  },
+  {
+    q: '¿Cuánto tarda una implantación?',
+    a: 'Una automatización concreta, como los recordatorios de cita, suele estar funcionando en una o dos semanas. Un proyecto de integración completo va por fases de tres a seis semanas cada una, para que la clínica nunca pare.',
+  },
+  {
+    q: '¿Atendéis fuera de Madrid capital?',
+    a: 'Sí. Las reuniones y el seguimiento los hago en remoto sin problema, y me desplazo por la Comunidad de Madrid cuando el proyecto lo requiere.',
+  },
+];
+
+const dolores = [
+  ['La agenda y la web no están conectadas', 'Los pacientes llaman para pedir cita porque no pueden reservar online, o reservan y alguien lo copia a mano al calendario.'],
+  ['Las ausencias se comen la agenda', 'Entre un 15 % y un 30 % de las citas se pierden en la mayoría de clínicas. Casi todas se evitan con un aviso el día anterior.'],
+  ['Los presupuestos se quedan en el aire', 'Se entregan, el paciente se lo piensa y nadie vuelve a llamar. Ahí hay tratamientos aceptados que no se están cerrando.'],
+  ['Nadie sabe los números al día', 'Cuántas primeras visitas, cuántos presupuestos aceptados, cuántos pacientes volvieron. Montar ese informe cuesta una mañana.'],
+  ['Los programas no se hablan entre sí', 'El software dental, la hoja de cálculo de recepción y la facturación guardan datos que nadie cruza.'],
+  ['Verifactu encima, con fecha', 'Y sin una respuesta clara sobre si el programa que usas cumple o hay que cambiarlo.'],
+];
+
+const soluciones = [
+  'Reserva de cita online sincronizada con la agenda de la clínica',
+  'Recordatorios automáticos por WhatsApp el día anterior',
+  'Seguimiento automático de presupuestos pendientes de aceptar',
+  'Historia clínica digital con búsqueda instantánea y acceso por usuario',
+  'Portal del paciente para consultar citas, presupuestos y documentación',
+  'Integración con el software dental que ya usas, sin cambiarlo',
+  'Cuadro de mando con los números de la clínica al día',
+  'Facturación conforme a Verifactu',
+];
+---
+
+<Base title={title} description={description} faq={faq}>
+  <section>
+    <div class="env" style="max-width:780px">
+      <p class="eyebrow">Clínicas dentales · Madrid</p>
+      <h1>Tu clínica funciona. Tu software, a medias.</h1>
+      <p class="lead">
+        Agenda en un sitio, pacientes en otro, presupuestos en un tercero y
+        recepción haciendo de puente entre los tres. Eso se puede conectar y
+        automatizar sin cambiar el programa que ya conocéis.
+      </p>
+      <p style="margin-top:28px">
+        <a class="btn" href="/contacto">Diagnóstico gratuito de 30 min</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env">
+      <h2>Lo que veo en casi todas las clínicas</h2>
+      <div class="grid" style="margin-top:32px">
+        {dolores.map(([t, d]) => (
+          <div class="card">
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="env" style="max-width:760px">
+      <h2>Qué resuelvo</h2>
+      <ul class="limpia" style="margin-top:24px">
+        {soluciones.map((s) => <li>{s}</li>)}
+      </ul>
+      <div class="aviso" style="margin-top:36px">
+        <p style="margin-bottom:0">
+          <strong>Sobre las ausencias:</strong> es la mejora que antes se nota y
+          la más fácil de medir. Basta con comparar el porcentaje de citas
+          perdidas del mes anterior con el del mes siguiente a implantar los
+          recordatorios. Si no mejora, lo revisamos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env" style="max-width:760px">
+      <h2>No hace falta cambiarlo todo</h2>
+      <p class="lead">
+        La mayoría de propuestas que te habrán hecho pasan por sustituir tu
+        programa de gestión. Casi nunca es necesario, y siempre es lo más caro y
+        lo más doloroso: formación del equipo, migración de historiales, semanas
+        de adaptación.
+      </p>
+      <p>
+        Antes de eso, casi siempre hay margen conectando lo que ya tienes y
+        automatizando lo que se hace a mano. Cuesta menos, se nota antes y no
+        obliga a nadie a aprender un programa nuevo.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="env" style="max-width:760px">
+      <h2>Preguntas frecuentes</h2>
+      <div style="margin-top:24px">
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env" style="max-width:720px;text-align:center">
+      <h2>Media hora para ver por dónde empezar</h2>
+      <p class="lead">
+        Sin coste y sin compromiso. Me cuentas cómo trabajáis, qué programas
+        usáis y dónde se os va el tiempo. Salgas o no conmigo, te llevas un
+        diagnóstico claro.
+      </p>
+      <p style="margin-top:24px">
+        <a class="btn" href="/contacto">Agendar 30 minutos</a>
+      </p>
+    </div>
+  </section>
+</Base>

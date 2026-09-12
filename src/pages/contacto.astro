@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Contacto · Aurelio Software';
+const description =
+  'Agenda un diagnóstico gratuito de 30 minutos para tu clínica dental en Madrid.';
+
+// TODO: sustituye por tus datos reales antes de publicar
+const CAL = 'https://cal.com/TU-USUARIO/30min';
+const WHATSAPP = 'https://wa.me/34663904285';
+const TELEFONO = '+34 663 90 42 85';
+const WEB3FORMS_KEY = 'TU-ACCESS-KEY';
+
+const campo =
+  'width:100%;padding:11px;border:1px solid var(--borde);border-radius:8px;background:var(--tarjeta);color:var(--texto);font:inherit';
+---
+
+<Base title={title} description={description}>
+  <section>
+    <div class="env" style="max-width:780px">
+      <p class="eyebrow">Sin coste y sin compromiso</p>
+      <h1>Diagnóstico gratuito de 30 minutos</h1>
+      <p class="lead">
+        Me cuentas qué programas usáis y dónde se os va el tiempo. Te digo qué se
+        puede mejorar, en qué orden y qué coste tendría. Salgas o no conmigo.
+      </p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env" style="max-width:780px">
+      <h2>Reserva directa</h2>
+      <p>Elige hueco en el calendario. Es la vía más rápida.</p>
+      <p style="margin-top:20px">
+        <a class="btn" href={CAL} target="_blank" rel="noopener">Ver huecos disponibles</a>
+        <a class="btn btn-2" href={WHATSAPP} target="_blank" rel="noopener" style="margin-left:8px">
+          Escribir por WhatsApp
+        </a>
+      </p>
+      <p style="margin-top:24px;color:var(--texto-suave)">
+        También por teléfono en <strong>{TELEFONO}</strong> o por correo en
+        <a href="mailto:contacto@aureliosoftware.es">contacto@aureliosoftware.es</a>,
+        de lunes a viernes de 9:00 a 18:00.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="env" style="max-width:620px">
+      <h2>O escríbeme</h2>
+      <form action="https://api.web3forms.com/submit" method="POST" style="margin-top:24px">
+        <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+        <input type="hidden" name="subject" value="Nuevo contacto desde aureliosoftware.es" />
+        <input type="checkbox" name="botcheck" style="display:none" />
+
+        <label style="display:block;margin-bottom:16px">
+          <span style="display:block;font-weight:600;margin-bottom:6px">Nombre</span>
+          <input type="text" name="nombre" required style={campo} />
+        </label>
+
+        <label style="display:block;margin-bottom:16px">
+          <span style="display:block;font-weight:600;margin-bottom:6px">Clínica</span>
+          <input type="text" name="clinica" style={campo} />
+        </label>
+
+        <label style="display:block;margin-bottom:16px">
+          <span style="display:block;font-weight:600;margin-bottom:6px">Email</span>
+          <input type="email" name="email" required style={campo} />
+        </label>
+
+        <label style="display:block;margin-bottom:16px">
+          <span style="display:block;font-weight:600;margin-bottom:6px">¿Qué necesitas?</span>
+          <textarea name="mensaje" rows="5" required style={campo}></textarea>
+        </label>
+
+        <label style="display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:.9rem;color:var(--texto-suave)">
+          <input type="checkbox" required style="margin-top:4px" />
+          <span>He leído y acepto la <a href="/privacidad">política de privacidad</a>.</span>
+        </label>
+
+        <button type="submit" class="btn" style="border:none;cursor:pointer;font:inherit;font-weight:600">
+          Enviar
+        </button>
+      </form>
+    </div>
+  </section>
+</Base>

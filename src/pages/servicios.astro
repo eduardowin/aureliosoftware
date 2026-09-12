@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import servicios from '../data/servicios.json';
+
+const title = 'Servicios · Aurelio Software';
+const description =
+  'Desarrollo de software a medida, automatizaciones, integraciones, facturación electrónica y asesoría tecnológica para clínicas dentales de Madrid.';
+---
+
+<Base title={title} description={description}>
+  <section>
+    <div class="env" style="max-width:780px">
+      <p class="eyebrow">Cinco líneas de trabajo</p>
+      <h1>Servicios</h1>
+      <p class="lead">
+        Trabajo sobre lo que ya tienes siempre que se pueda, y construyo desde
+        cero solo cuando de verdad hace falta.
+      </p>
+    </div>
+  </section>
+
+  {servicios.map((s, i) => (
+    <section id={s.id} class={i % 2 === 0 ? 'alt' : undefined} style="scroll-margin-top:80px">
+      <div class="env" style="max-width:820px">
+        <p class="eyebrow">{s.titulo}</p>
+        <h2>{s.gancho}</h2>
+        <p class="lead">{s.descripcion}</p>
+
+        <h3 style="margin-top:32px">Qué incluye</h3>
+        <ul class="limpia">
+          {s.entregables.map((e) => <li>{e}</li>)}
+        </ul>
+
+        <div class="aviso" style="margin-top:28px">
+          <p style="margin-bottom:0">
+            <strong>Cuándo tiene sentido:</strong> {s.cuando}
+          </p>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section>
+    <div class="env" style="max-width:720px;text-align:center">
+      <h2>¿No sabes cuál necesitas?</h2>
+      <p class="lead">
+        Es lo normal. Para eso está el diagnóstico gratuito: media hora para
+        entender tu clínica y decirte por dónde empezar.
+      </p>
+      <p style="margin-top:24px"><a class="btn" href="/contacto">Agendar 30 minutos</a></p>
+    </div>
+  </section>
+</Base>

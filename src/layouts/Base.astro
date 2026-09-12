@@ -1,0 +1,279 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  faq?: { q: string; a: string }[];
+}
+
+const { title, description, canonical, faq } = Astro.props;
+const site = 'https://aureliosoftware.es';
+const url = canonical ?? new URL(Astro.url.pathname, site).href;
+
+const zonas = [
+  'Madrid','Alcobendas','San Sebastián de los Reyes','Tres Cantos',
+  'Pozuelo de Alarcón','Las Rozas de Madrid','Majadahonda','Boadilla del Monte',
+  'Alcorcón','Móstoles','Leganés','Getafe','Fuenlabrada','Parla','Pinto',
+  'Alcalá de Henares','Torrejón de Ardoz','Coslada','San Fernando de Henares',
+  'Rivas-Vaciamadrid',
+];
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Aurelio Software',
+  description:
+    'Desarrollo de software a medida, automatizaciones, integraciones, facturación electrónica y asesoría tecnológica para clínicas dentales en Madrid.',
+  url: site,
+  telephone: '+34663904285',
+  email: 'contacto@aureliosoftware.es',
+  address: { '@type': 'PostalAddress', addressLocality: 'Madrid', addressCountry: 'ES' },
+  areaServed: zonas.map((n) => ({ '@type': 'City', name: n })),
+  priceRange: '€€',
+  knowsAbout: [
+    'Desarrollo de software para clínicas dentales',
+    'Verifactu', 'Factura electrónica', 'Automatización de procesos',
+    'Integración de sistemas',
+  ],
+};
+
+const faqSchema = faq && {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
+
+const nav = [
+  { href: '/clinicas-dentales', label: 'Clínicas dentales' },
+  { href: '/verifactu', label: 'Verifactu' },
+  { href: '/servicios', label: 'Servicios' },
+  { href: '/sobre-mi', label: 'Sobre mí' },
+];
+const path = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={url} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={url} />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:site_name" content="Aurelio Software" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(localBusiness)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+  <style is:global>
+    :root {
+      --azul: #12395c;
+      --azul-claro: #1d5384;
+      --oro: #b8912f;
+      --oro-claro: #d4ad4a;
+      --fondo: #fbfaf8;
+      --fondo-alt: #f2efe9;
+      --texto: #1c2024;
+      --texto-suave: #55606b;
+      --borde: #e2ddd4;
+      --tarjeta: #ffffff;
+      --max: 1080px;
+      --radio: 10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme='light']) {
+        --azul: #6aa8dd;
+        --azul-claro: #8cc0ea;
+        --oro: #d9b455;
+        --oro-claro: #e8c979;
+        --fondo: #12161a;
+        --fondo-alt: #1a2026;
+        --texto: #e9e6e1;
+        --texto-suave: #a3acb5;
+        --borde: #2b333b;
+        --tarjeta: #181e24;
+      }
+    }
+
+    :root[data-theme='dark'] {
+      --azul: #6aa8dd;
+      --azul-claro: #8cc0ea;
+      --oro: #d9b455;
+      --oro-claro: #e8c979;
+      --fondo: #12161a;
+      --fondo-alt: #1a2026;
+      --texto: #e9e6e1;
+      --texto-suave: #a3acb5;
+      --borde: #2b333b;
+      --tarjeta: #181e24;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font: 16px/1.65 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; }
+    [hidden] { display: none !important; }
+
+    h1, h2, h3 { line-height: 1.2; letter-spacing: -0.02em; margin: 0 0 .6em; }
+    h1 { font-size: clamp(1.9rem, 5vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); }
+    h3 { font-size: 1.15rem; }
+    p { margin: 0 0 1.1em; }
+    a { color: var(--azul); }
+
+    .env { max-width: var(--max); margin-inline: auto; padding-inline: 20px; }
+    section { padding-block: clamp(48px, 8vw, 84px); }
+    .alt { background: var(--fondo-alt); }
+
+    .btn {
+      display: inline-block; padding: 13px 24px; border-radius: var(--radio);
+      background: var(--azul); color: #fff; text-decoration: none;
+      font-weight: 600; border: 2px solid var(--azul); transition: .15s;
+    }
+    .btn:hover { background: var(--azul-claro); border-color: var(--azul-claro); }
+    .btn-2 { background: transparent; color: var(--azul); }
+    .btn-2:hover { background: var(--azul); color: #fff; }
+    :root[data-theme='dark'] .btn, :root:not([data-theme='light']) .btn { color: #10161c; }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme='dark']) .btn { color: #fff; }
+      :root:not([data-theme='dark']) .btn-2 { color: var(--azul); }
+    }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+
+    .card {
+      background: var(--tarjeta); border: 1px solid var(--borde);
+      border-radius: var(--radio); padding: 24px;
+    }
+    .card h3 { margin-bottom: .35em; }
+    .card p { color: var(--texto-suave); margin-bottom: 0; }
+
+    header.top {
+      border-bottom: 1px solid var(--borde); background: var(--fondo);
+      position: sticky; top: 0; z-index: 20;
+    }
+    header.top .env {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding-block: 14px; flex-wrap: wrap;
+    }
+    .marca {
+      font-weight: 700; font-size: 1.1rem; text-decoration: none;
+      color: var(--texto); letter-spacing: -0.02em; white-space: nowrap;
+    }
+    .marca span { color: var(--oro); }
+    nav.principal { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; }
+    nav.principal a {
+      text-decoration: none; color: var(--texto-suave);
+      font-size: .93rem; font-weight: 500;
+    }
+    nav.principal a:hover, nav.principal a[aria-current='page'] { color: var(--azul); }
+
+    footer.pie {
+      border-top: 1px solid var(--borde); background: var(--fondo-alt);
+      padding-block: 40px; font-size: .9rem; color: var(--texto-suave);
+    }
+    footer.pie .cols { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    footer.pie a { color: var(--texto-suave); text-decoration: none; display: block; padding-block: 3px; }
+    footer.pie a:hover { color: var(--azul); }
+    footer.pie .legal { margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--borde); }
+
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: .1em; font-size: .78rem;
+      font-weight: 700; color: var(--oro); margin-bottom: .8em;
+    }
+    .lead { font-size: clamp(1.05rem, 2vw, 1.2rem); color: var(--texto-suave); }
+    .aviso {
+      border-left: 3px solid var(--oro); background: var(--tarjeta);
+      padding: 18px 22px; border-radius: 0 var(--radio) var(--radio) 0;
+    }
+    ul.limpia { list-style: none; padding: 0; margin: 0; }
+    ul.limpia li { padding-left: 26px; position: relative; margin-bottom: 9px; }
+    ul.limpia li::before {
+      content: '✓'; position: absolute; left: 0; color: var(--oro); font-weight: 700;
+    }
+    details {
+      border-bottom: 1px solid var(--borde); padding: 16px 0;
+    }
+    details summary {
+      cursor: pointer; font-weight: 600; list-style: none;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::after { content: ' +'; color: var(--oro); }
+    details[open] summary::after { content: ' −'; }
+    details p { margin: 12px 0 0; color: var(--texto-suave); }
+  </style>
+</head>
+
+<body>
+  <header class="top">
+    <div class="env">
+      <a class="marca" href="/">Aurelio<span> Software</span></a>
+      <nav class="principal">
+        {nav.map((i) => (
+          <a href={i.href} aria-current={path === i.href ? 'page' : undefined}>{i.label}</a>
+        ))}
+        <a class="btn" href="/contacto" style="padding:9px 18px;font-size:.9rem">Diagnóstico gratuito</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="pie">
+    <div class="env">
+      <div class="cols">
+        <div>
+          <strong style="color:var(--texto)">Aurelio Software</strong>
+          <p style="margin-top:8px">
+            Software a medida, automatizaciones e integraciones para clínicas
+            dentales de Madrid.
+          </p>
+        </div>
+        <div>
+          <strong style="color:var(--texto)">Servicios</strong>
+          <a href="/servicios#desarrollo">Desarrollo de software</a>
+          <a href="/servicios#automatizaciones">Automatizaciones</a>
+          <a href="/servicios#integraciones">Integraciones</a>
+          <a href="/servicios#facturacion-electronica">Facturación electrónica</a>
+          <a href="/servicios#asesorias">Asesorías</a>
+        </div>
+        <div>
+          <strong style="color:var(--texto)">Contacto</strong>
+          <a href="mailto:contacto@aureliosoftware.es">contacto@aureliosoftware.es</a>
+          <a href="/contacto">Agendar 30 minutos</a>
+          <p style="margin-top:8px">Madrid y área metropolitana</p>
+        </div>
+      </div>
+      <div class="legal">
+        © {new Date().getFullYear()} Aurelio Software ·
+        <a href="/aviso-legal" style="display:inline">Aviso legal</a> ·
+        <a href="/privacidad" style="display:inline">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

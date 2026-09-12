@@ -1,0 +1,72 @@
+[
+  {
+    "id": "desarrollo",
+    "titulo": "Desarrollo de Software",
+    "icono": "code",
+    "gancho": "Software hecho para cómo trabaja tu clínica, no al revés.",
+    "descripcion": "Cuando ningún programa del mercado encaja con tu forma de trabajar, lo construimos a medida. Aplicaciones web accesibles desde cualquier equipo de la clínica, sin instalaciones ni licencias por puesto.",
+    "entregables": [
+      "Aplicaciones web a medida",
+      "Software de gestión para clínicas dentales",
+      "Portal del paciente",
+      "Cuadros de mando para dirección"
+    ],
+    "cuando": "Tienes un proceso propio que ningún programa estándar cubre, o pagas licencias por funciones que no usas."
+  },
+  {
+    "id": "automatizaciones",
+    "titulo": "Automatizaciones",
+    "icono": "bolt",
+    "gancho": "Recepción deja de llamar paciente por paciente.",
+    "descripcion": "Todo lo que tu equipo hace a mano cada semana y podría hacerse solo: recordatorios de cita, seguimiento de presupuestos, informes de dirección, avisos de revisión.",
+    "entregables": [
+      "Recordatorios de cita por WhatsApp",
+      "Seguimiento automático de presupuestos",
+      "Informes de dirección al día",
+      "Avisos de revisión y mantenimiento"
+    ],
+    "cuando": "Alguien de tu equipo dedica horas cada semana a tareas repetitivas que siempre son iguales."
+  },
+  {
+    "id": "integraciones",
+    "titulo": "Integraciones",
+    "icono": "link",
+    "gancho": "Que tus programas se hablen entre sí.",
+    "descripcion": "El software dental, la agenda, la web y la hoja de cálculo de recepción guardan datos que nadie cruza. Los conectamos sin obligarte a cambiar lo que ya funciona.",
+    "entregables": [
+      "Conexión con tu software dental actual",
+      "Sincronización de agenda con la web",
+      "Migración de datos sin perder histórico",
+      "Conexión con herramientas de facturación"
+    ],
+    "cuando": "Hay datos que alguien copia de un sitio a otro a mano, o nadie sabe decir cuántos pacientes volvieron el mes pasado."
+  },
+  {
+    "id": "facturacion-electronica",
+    "titulo": "Facturación Electrónica",
+    "icono": "receipt",
+    "gancho": "Verifactu es obligatorio y tiene fecha.",
+    "descripcion": "Revisamos si tu programa de facturación cumple el reglamento, y lo adaptamos o lo sustituimos antes del plazo. Registros trazables, código QR verificable y remisión a la Agencia Tributaria.",
+    "entregables": [
+      "Auditoría de cumplimiento Verifactu",
+      "Adaptación de tu programa actual",
+      "Implantación de factura electrónica B2B",
+      "Facturación automática de tratamientos"
+    ],
+    "cuando": "No sabes con certeza si tu programa cumple. Los plazos son enero y julio de 2027, y las sanciones pueden superar los 50.000 €."
+  },
+  {
+    "id": "asesorias",
+    "titulo": "Asesorías",
+    "icono": "compass",
+    "gancho": "Saber qué hacer antes de gastar.",
+    "descripcion": "Revisamos qué tienes, qué sobra y qué falta, y te entregamos un plan priorizado por impacto real, no por moda. Sin compromiso de que lo ejecutemos nosotros.",
+    "entregables": [
+      "Auditoría de sistemas",
+      "Plan de digitalización por fases",
+      "Asesoría en protección de datos sanitarios",
+      "Acompañamiento y soporte continuo"
+    ],
+    "cuando": "Te han ofrecido tres soluciones distintas y no sabes cuál necesitas de verdad."
+  }
+]
