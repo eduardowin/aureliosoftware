@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import retrato from '../assets/eduardo.jpg';
 
 const title = 'Sobre mí · Eduardo Zuñiga · Aurelio Software';
 const description =
@@ -9,8 +11,20 @@ const description =
 <Base title={title} description={description}>
   <section>
     <div class="env" style="max-width:720px">
-      <p class="eyebrow">Quién hay detrás</p>
-      <h1>Soy Eduardo Aurelio Zuñiga</h1>
+      <div class="presenta">
+        <Image
+          src={retrato}
+          alt="Eduardo Aurelio Zuñiga, fundador de Aurelio Software"
+          width={148}
+          height={148}
+          class="retrato"
+          loading="eager"
+        />
+        <div>
+          <p class="eyebrow" style="margin-bottom:.5em">Quién hay detrás</p>
+          <h1 style="margin-bottom:0">Soy Eduardo Aurelio Zuñiga</h1>
+        </div>
+      </div>
 
       <p class="lead">
         Aurelio es mi segundo nombre, y de ahí sale la marca. Detrás de Aurelio
@@ -84,3 +98,17 @@ const description =
     </div>
   </section>
 </Base>
+
+<style>
+  .presenta {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .presenta h1 { font-size: clamp(2rem, 4.6vw, 3rem); }
+  @media (max-width: 560px) {
+    .presenta { gap: 20px; }
+  }
+</style>
