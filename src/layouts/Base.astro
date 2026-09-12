@@ -95,9 +95,9 @@ const path = Astro.url.pathname;
       --sombra: 0 1px 2px rgba(16,24,40,.04), 0 4px 12px rgba(16,24,40,.05);
       --sombra-alta: 0 2px 4px rgba(16,24,40,.05), 0 12px 28px rgba(16,24,40,.09);
       --max: 1120px;
-      --coral: #e84a2e;
-      --coral-osc: #cf3d22;
-      --coral-tenue: #ffe4de;
+      --coral: #ff6347;
+      --coral-osc: #e8543a;
+      --coral-tenue: #ffe8e3;
       --ambar: #f5a524;
       --ambar-osc: #dd9014;
       --wasap: #25d366;
@@ -137,13 +137,13 @@ const path = Astro.url.pathname;
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
     .btn:hover { background: var(--coral-osc); border-color: var(--coral-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
-    .btn-2 { background: #fff; color: var(--texto); border-color: rgba(16,24,40,.14); }
+    .btn-2 { background: #fff; color: var(--texto); border-color: rgba(16,24,40,.1); }
     .btn-2:hover { background: var(--coral-tenue); border-color: var(--coral); color: var(--texto); transform: translateY(-1px); box-shadow: none; }
     .btn-alerta {
       display: inline-flex; align-items: center; gap: 9px;
-      padding: 15px 26px; border-radius: 4px;
+      padding: 12px 28px; border-radius: 4px;
       background: var(--ambar); color: var(--texto); text-decoration: none;
-      font-weight: 600; font-size: .97rem; border: 1.5px solid var(--ambar);
+      font-weight: 500; font-size: 1rem; line-height: 1.1; border: 1px solid var(--ambar);
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
     .btn-alerta:hover { background: var(--ambar-osc); border-color: var(--ambar-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
@@ -220,9 +220,9 @@ const path = Astro.url.pathname;
 
     .btn-wa {
       display: inline-flex; align-items: center; gap: 9px;
-      padding: 15px 26px; border-radius: 4px;
+      padding: 12px 28px; border-radius: 4px;
       background: var(--wasap); color: #fff; text-decoration: none;
-      font-weight: 600; font-size: .97rem; border: 1.5px solid var(--wasap);
+      font-weight: 500; font-size: 1rem; line-height: 1.1; border: 1px solid var(--wasap);
       transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
     .btn-wa:hover { filter: brightness(.94); transform: translateY(-1px); box-shadow: var(--sombra); color: #fff; }
@@ -256,7 +256,7 @@ const path = Astro.url.pathname;
         {nav.map((i) => (
           <a href={i.href} aria-current={path === i.href ? 'page' : undefined}>{i.label}</a>
         ))}
-        <a class="btn" href="/contacto" style="padding:10px 20px;font-size:.9rem">Diagnóstico gratuito</a>
+        <a class="btn" href="/contacto" style="padding:8px 26px">Diagnóstico gratuito</a>
       </nav>
     </div>
   </header>
