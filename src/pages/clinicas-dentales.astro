@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BotonWhatsApp from '../components/BotonWhatsApp.astro';
 
 const title = 'Software para clínicas dentales en Madrid · Aurelio Software';
 const description =
@@ -65,6 +66,7 @@ const soluciones = [
       </p>
       <p style="margin-top:28px">
         <a class="btn" href="/contacto">Diagnóstico gratuito de 30 min</a>
+        <BotonWhatsApp texto="WhatsApp" style="margin-left:10px" />
       </p>
     </div>
   </section>
@@ -141,6 +143,7 @@ const soluciones = [
       </p>
       <p style="margin-top:24px">
         <a class="btn" href="/contacto">Agendar 30 minutos</a>
+        <BotonWhatsApp mensaje="Hola, tengo una clínica dental y quiero información" style="margin-left:10px" />
       </p>
     </div>
   </section>

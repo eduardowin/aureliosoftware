@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BotonWhatsApp from '../components/BotonWhatsApp.astro';
 import servicios from '../data/servicios.json';
 
 const title = 'Aurelio Software · Software a medida para clínicas dentales en Madrid';
@@ -50,7 +51,8 @@ const pasos = [
       </p>
       <p style="margin-top:28px">
         <a class="btn" href="/contacto">Diagnóstico gratuito de 30 min</a>
-        <a class="btn btn-2" href="/verifactu" style="margin-left:8px">¿Cumplo Verifactu?</a>
+        <BotonWhatsApp texto="WhatsApp" style="margin-left:10px" />
+        <a class="btn btn-2" href="/verifactu" style="margin-left:10px">¿Cumplo Verifactu?</a>
       </p>
     </div>
   </section>
@@ -152,6 +154,7 @@ const pasos = [
       </p>
       <p style="margin-top:24px">
         <a class="btn" href="/contacto">Agendar 30 minutos</a>
+        <BotonWhatsApp style="margin-left:10px" />
       </p>
     </div>
   </section>
