@@ -95,6 +95,9 @@ const path = Astro.url.pathname;
       --sombra: 0 1px 2px rgba(16,24,40,.04), 0 4px 12px rgba(16,24,40,.05);
       --sombra-alta: 0 2px 4px rgba(16,24,40,.05), 0 12px 28px rgba(16,24,40,.09);
       --max: 1120px;
+      --coral: #e84a2e;
+      --coral-osc: #cf3d22;
+      --coral-tenue: #ffe4de;
       --wasap: #25d366;
       --radio: 6px;
     }
@@ -126,14 +129,14 @@ const path = Astro.url.pathname;
     .alt { background: var(--fondo-alt); }
 
     .btn {
-      display: inline-block; padding: 15px 30px; border-radius: var(--radio);
-      background: var(--azul); color: #fff; text-decoration: none;
-      font-weight: 600; font-size: .97rem; border: 1.5px solid var(--azul);
+      display: inline-block; padding: 15px 30px; border-radius: 4px;
+      background: var(--coral); color: var(--texto); text-decoration: none;
+      font-weight: 600; font-size: .97rem; border: 1.5px solid var(--coral);
       transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
     }
-    .btn:hover { background: var(--azul-claro); border-color: var(--azul-claro); transform: translateY(-1px); box-shadow: var(--sombra); }
-    .btn-2 { background: transparent; color: var(--azul); border-color: var(--borde); }
-    .btn-2:hover { background: var(--azul-tenue); border-color: var(--azul); color: var(--azul); transform: translateY(-1px); box-shadow: none; }
+    .btn:hover { background: var(--coral-osc); border-color: var(--coral-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
+    .btn-2 { background: #fff; color: var(--texto); border-color: rgba(16,24,40,.14); }
+    .btn-2:hover { background: var(--coral-tenue); border-color: var(--coral); color: var(--texto); transform: translateY(-1px); box-shadow: none; }
     .btn, .btn-2, .btn-wa { vertical-align: middle; margin-bottom: 10px; }
 
     .grid { display: grid; gap: 26px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
@@ -180,11 +183,11 @@ const path = Astro.url.pathname;
 
     .eyebrow {
       text-transform: uppercase; letter-spacing: .13em; font-size: .76rem;
-      font-weight: 700; color: var(--oro); margin-bottom: 1.1em;
+      font-weight: 700; color: var(--coral); margin-bottom: 1.1em;
     }
     .lead { font-size: clamp(1.1rem, 2.1vw, 1.3rem); color: var(--texto-suave); line-height: 1.62; }
     .aviso {
-      border: 1px solid var(--borde); border-left: 3px solid var(--oro);
+      border: 1px solid var(--borde); border-left: 3px solid var(--coral);
       background: var(--tarjeta); padding: 26px 30px; border-radius: var(--radio);
       box-shadow: var(--sombra);
     }
@@ -192,7 +195,7 @@ const path = Astro.url.pathname;
     ul.limpia li { padding-left: 30px; position: relative; margin-bottom: 13px; }
     ul.limpia li::before {
       content: ''; position: absolute; left: 4px; top: .62em;
-      width: 7px; height: 7px; border-radius: 50%; background: var(--oro);
+      width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
     }
     details { border-bottom: 1px solid var(--borde); padding: 22px 0; }
     details summary { cursor: pointer; font-weight: 600; list-style: none; font-size: 1.04rem; }
@@ -203,7 +206,7 @@ const path = Astro.url.pathname;
 
     .btn-wa {
       display: inline-flex; align-items: center; gap: 9px;
-      padding: 15px 26px; border-radius: var(--radio);
+      padding: 15px 26px; border-radius: 4px;
       background: var(--wasap); color: #fff; text-decoration: none;
       font-weight: 600; font-size: .97rem; border: 1.5px solid var(--wasap);
       transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
