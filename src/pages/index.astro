@@ -21,6 +21,15 @@ const problemas = [
   },
 ];
 
+const tecnologias = [
+  ['.NET / C#', 'El motor de la mayoría de sistemas de gestión sanitaria'],
+  ['SQL Server', 'Donde viven los datos de tus pacientes'],
+  ['Microsoft Azure', 'Infraestructura en la nube, certificado en plataforma, datos e IA'],
+  ['APIs e integraciones', 'Para que tus programas se hablen entre sí'],
+  ['WhatsApp Business', 'Recordatorios de cita automáticos'],
+  ['Automatización', 'Todo lo que hoy se hace a mano y no debería'],
+];
+
 const pasos = [
   ['Diagnóstico', 'Treinta minutos para entender qué usas y dónde se pierde el tiempo. Sin coste ni compromiso.'],
   ['Propuesta cerrada', 'Un plan por fases con precio cerrado por fase. Sabes lo que cuesta antes de empezar.'],
@@ -103,13 +112,31 @@ const pasos = [
 
   <section>
     <div class="env">
+      <p class="eyebrow">El proceso</p>
       <h2>Cómo trabajo</h2>
-      <div class="grid" style="margin-top:32px">
+      <div class="pasos">
         {pasos.map(([t, d], i) => (
-          <div class="card">
-            <p class="eyebrow" style="margin-bottom:.4em">Paso {i + 1}</p>
-            <h3>{t}</h3>
-            <p>{d}</p>
+          <div class="paso">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <div>
+              <h3>{t}</h3>
+              <p>{d}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env">
+      <p class="eyebrow">Con qué trabajo</p>
+      <h2>Tecnología, no promesas</h2>
+      <div class="tecno">
+        {tecnologias.map(([t, d]) => (
+          <div class="tec">
+            <strong>{t}</strong>
+            <span>{d}</span>
           </div>
         ))}
       </div>
@@ -129,3 +156,44 @@ const pasos = [
     </div>
   </section>
 </Base>
+
+<style>
+  .pasos {
+    margin-top: 44px;
+    display: grid;
+    gap: 40px 48px;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  }
+  .paso { display: flex; gap: 22px; align-items: flex-start; }
+  .paso .num {
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--borde);
+    flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .paso h3 { margin-bottom: .35em; }
+  .paso p { color: var(--texto-suave); margin-bottom: 0; font-size: .97rem; }
+
+  .tecno {
+    margin-top: 44px;
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    background: var(--borde);
+    border: 1px solid var(--borde);
+    border-radius: var(--radio);
+    overflow: hidden;
+  }
+  .tec {
+    background: var(--tarjeta);
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .tec strong { font-size: 1.06rem; letter-spacing: -0.02em; }
+  .tec span { color: var(--texto-suave); font-size: .94rem; line-height: 1.55; }
+</style>
