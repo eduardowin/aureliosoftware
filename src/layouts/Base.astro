@@ -98,6 +98,8 @@ const path = Astro.url.pathname;
       --coral: #e84a2e;
       --coral-osc: #cf3d22;
       --coral-tenue: #ffe4de;
+      --ambar: #f5a524;
+      --ambar-osc: #dd9014;
       --wasap: #25d366;
       --radio: 6px;
     }
@@ -137,7 +139,17 @@ const path = Astro.url.pathname;
     .btn:hover { background: var(--coral-osc); border-color: var(--coral-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
     .btn-2 { background: #fff; color: var(--texto); border-color: rgba(16,24,40,.14); }
     .btn-2:hover { background: var(--coral-tenue); border-color: var(--coral); color: var(--texto); transform: translateY(-1px); box-shadow: none; }
-    .btn, .btn-2, .btn-wa { vertical-align: middle; margin-bottom: 10px; }
+    .btn-alerta {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 15px 26px; border-radius: 4px;
+      background: var(--ambar); color: var(--texto); text-decoration: none;
+      font-weight: 600; font-size: .97rem; border: 1.5px solid var(--ambar);
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+    }
+    .btn-alerta:hover { background: var(--ambar-osc); border-color: var(--ambar-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
+    .btn-alerta svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+    .btn, .btn-2, .btn-wa, .btn-alerta { vertical-align: middle; margin-bottom: 10px; }
 
     .grid { display: grid; gap: 26px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
 
@@ -171,6 +183,8 @@ const path = Astro.url.pathname;
       font-size: .94rem; font-weight: 500; transition: color .12s;
     }
     nav.principal a:hover, nav.principal a[aria-current='page'] { color: var(--texto); }
+    nav.principal a.btn { color: var(--texto); }
+    nav.principal a.btn:hover { color: var(--texto); }
 
     footer.pie {
       border-top: 1px solid var(--borde); background: var(--fondo-alt);
@@ -283,7 +297,7 @@ const path = Astro.url.pathname;
         <div>
           <strong style="color:var(--texto)">Contacto</strong>
           <a href="mailto:contacto@aureliosoftware.es">contacto@aureliosoftware.es</a>
-          <a href="/contacto">Agendar 30 minutos</a>
+          <a href="/contacto">Agendar 20 minutos</a>
           <p style="margin-top:8px">Madrid y área metropolitana</p>
         </div>
       </div>
