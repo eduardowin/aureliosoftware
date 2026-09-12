@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+
+const title = 'Mensaje recibido · Aurelio Software';
+const description = 'Hemos recibido tu mensaje. Te respondo en menos de 24 horas laborables.';
+
+// TODO: sustituir por la URL real de Cal.com
+const CAL = 'https://cal.com/TU-USUARIO/30min';
+const WHATSAPP = 'https://wa.me/34663904285';
+---
+
+<Base title={title} description={description}>
+  <section>
+    <div class="env" style="max-width:640px;text-align:center">
+      <p class="eyebrow">Mensaje recibido</p>
+      <h1>Gracias, ya lo tengo</h1>
+      <p class="lead">
+        Te respondo en menos de 24 horas laborables, normalmente antes. Si es
+        urgente, escríbeme directamente por WhatsApp.
+      </p>
+
+      <p style="margin-top:28px">
+        <a class="btn" href={CAL} target="_blank" rel="noopener">Agendar 30 minutos ahora</a>
+        <a class="btn btn-2" href={WHATSAPP} target="_blank" rel="noopener" style="margin-left:8px">
+          WhatsApp
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="env" style="max-width:720px">
+      <h2>Mientras tanto</h2>
+      <p>
+        Si has escrito por el tema de la facturación, esta página resuelve la
+        mayoría de dudas antes de que hablemos:
+      </p>
+      <ul class="limpia" style="margin-top:18px">
+        <li><a href="/verifactu">Verifactu: fechas, qué exige y los tres escenarios posibles</a></li>
+        <li><a href="/clinicas-dentales">Qué resuelvo en una clínica dental</a></li>
+        <li><a href="/servicios">Las cinco líneas de trabajo en detalle</a></li>
+      </ul>
+    </div>
+  </section>
+</Base>

@@ -9,7 +9,7 @@ const description =
 const CAL = 'https://cal.com/TU-USUARIO/30min';
 const WHATSAPP = 'https://wa.me/34663904285';
 const TELEFONO = '+34 663 90 42 85';
-const WEB3FORMS_KEY = 'TU-ACCESS-KEY';
+const WEB3FORMS_KEY = 'e491d729-4a1d-4dc6-9da1-d47a807ea273';
 
 const campo =
   'width:100%;padding:11px;border:1px solid var(--borde);border-radius:8px;background:var(--tarjeta);color:var(--texto);font:inherit';
@@ -51,6 +51,8 @@ const campo =
       <form action="https://api.web3forms.com/submit" method="POST" style="margin-top:24px">
         <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
         <input type="hidden" name="subject" value="Nuevo contacto desde aureliosoftware.es" />
+        <input type="hidden" name="from_name" value="Web Aurelio Software" />
+        <input type="hidden" name="redirect" value="https://aureliosoftware.es/gracias" />
         <input type="checkbox" name="botcheck" style="display:none" />
 
         <label style="display:block;margin-bottom:16px">
