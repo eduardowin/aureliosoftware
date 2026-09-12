@@ -81,6 +81,7 @@ const path = Astro.url.pathname;
 
   <style is:global>
     :root {
+      color-scheme: light;
       --azul: #0d2b45;
       --azul-claro: #1b4e7a;
       --azul-tenue: #eef3f8;
@@ -95,38 +96,6 @@ const path = Astro.url.pathname;
       --sombra-alta: 0 2px 4px rgba(15,23,32,.05), 0 12px 28px rgba(15,23,32,.08);
       --max: 1120px;
       --radio: 6px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme='light']) {
-        --azul: #7fb4e4;
-        --azul-claro: #a3cbf0;
-        --azul-tenue: #16202b;
-        --oro: #d9b455;
-        --fondo: #0d1117;
-        --fondo-alt: #141a21;
-        --texto: #e9edf2;
-        --texto-suave: #9aa5b1;
-        --borde: #232c36;
-        --tarjeta: #141a21;
-        --sombra: 0 1px 2px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
-        --sombra-alta: 0 2px 4px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.35);
-      }
-    }
-
-    :root[data-theme='dark'] {
-      --azul: #7fb4e4;
-      --azul-claro: #a3cbf0;
-      --azul-tenue: #16202b;
-      --oro: #d9b455;
-      --fondo: #0d1117;
-      --fondo-alt: #141a21;
-      --texto: #e9edf2;
-      --texto-suave: #9aa5b1;
-      --borde: #232c36;
-      --tarjeta: #141a21;
-      --sombra: 0 1px 2px rgba(0,0,0,.3), 0 4px 12px rgba(0,0,0,.25);
-      --sombra-alta: 0 2px 4px rgba(0,0,0,.35), 0 12px 28px rgba(0,0,0,.35);
     }
 
     * { box-sizing: border-box; }
@@ -163,12 +132,6 @@ const path = Astro.url.pathname;
     .btn:hover { background: var(--azul-claro); border-color: var(--azul-claro); transform: translateY(-1px); box-shadow: var(--sombra); }
     .btn-2 { background: transparent; color: var(--azul); border-color: var(--borde); }
     .btn-2:hover { background: var(--azul-tenue); border-color: var(--azul); color: var(--azul); transform: translateY(-1px); box-shadow: none; }
-    :root[data-theme='dark'] .btn, :root:not([data-theme='light']) .btn { color: #0d1117; }
-    @media (prefers-color-scheme: light) {
-      :root:not([data-theme='dark']) .btn { color: #fff; }
-      :root:not([data-theme='dark']) .btn-2 { color: var(--azul); }
-    }
-
     .grid { display: grid; gap: 26px; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
 
     .card {
