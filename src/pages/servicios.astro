@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import BotonCita from '../components/BotonCita.astro';
 import servicios from '../data/servicios.json';
 
 const title = 'Servicios · Aurelio Software';
@@ -47,7 +48,7 @@ const description =
         Es lo normal. Para eso está el diagnóstico gratuito: veinte minutos para
         entender tu clínica y decirte por dónde empezar.
       </p>
-      <p style="margin-top:24px"><a class="btn" href="/contacto">Agendar 20 minutos</a></p>
+      <p style="margin-top:24px"><BotonCita texto="Agendar 20 minutos" /></p>
     </div>
   </section>
 </Base>

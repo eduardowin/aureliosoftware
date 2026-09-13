@@ -1,0 +1,172 @@
+---
+// Calculadora de coste de las ausencias. Sin dependencias.
+---
+
+<div class="calc">
+  <p class="calc-tit">¿Cuánto te cuestan las ausencias?</p>
+
+  <label class="campo">
+    <span>Citas al mes <b data-out="citas">400</b></span>
+    <input type="range" id="c-citas" min="50" max="1200" step="10" value="400" />
+  </label>
+
+  <label class="campo">
+    <span>Ausencias <b data-out="pct">20 %</b></span>
+    <input type="range" id="c-pct" min="2" max="40" step="1" value="20" />
+  </label>
+
+  <label class="campo">
+    <span>Valor medio de la cita <b data-out="valor">60 €</b></span>
+    <input type="range" id="c-valor" min="20" max="300" step="5" value="60" />
+  </label>
+
+  <div class="calc-res">
+    <span class="calc-lbl">Pierdes al año</span>
+    <strong class="calc-num" id="c-total">—</strong>
+    <p class="calc-sub">
+      Son <b id="c-citasperdidas">—</b> citas vacías al año.
+      Bajando las ausencias al 8 %, recuperarías
+      <b id="c-recupera">—</b>.
+    </p>
+  </div>
+
+  <p class="calc-pie">
+    Cifras orientativas. En el diagnóstico las calculamos con tus datos reales.
+  </p>
+</div>
+
+<style>
+  .calc {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 15px 16px 13px;
+    box-shadow: var(--sombra-alta);
+  }
+  .calc-tit {
+    font-weight: 700;
+    font-size: .93rem;
+    letter-spacing: -0.02em;
+    color: var(--coral);
+    margin: 0 0 11px;
+  }
+  .campo { display: block; margin-bottom: 9px; }
+  .campo span {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: .79rem;
+    color: var(--texto-suave);
+    margin-bottom: 5px;
+  }
+  .campo b {
+    color: var(--texto);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .campo input[type='range'] {
+    width: 100%;
+    height: 4px;
+    appearance: none;
+    background: var(--borde);
+    border-radius: 4px;
+    outline: none;
+  }
+  .campo input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--coral);
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(16, 24, 40, 0.25);
+    cursor: pointer;
+  }
+  .campo input[type='range']::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--coral);
+    border: 2px solid #fff;
+    cursor: pointer;
+  }
+
+  .calc-res {
+    margin-top: 12px;
+    padding-top: 11px;
+    border-top: 1px solid var(--borde);
+  }
+  .calc-lbl {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--texto-suave);
+    margin-bottom: 4px;
+  }
+  .calc-num {
+    display: block;
+    font-size: clamp(1.45rem, 2.8vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    color: var(--coral);
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-sub {
+    margin: 9px 0 0;
+    font-size: 0.81rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+  }
+  .calc-sub b { color: var(--texto); font-weight: 600; }
+  .calc-pie {
+    margin: 9px 0 0;
+    font-size: 0.71rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+  }
+</style>
+
+<script>
+  const eur = new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+  });
+  const num = new Intl.NumberFormat('es-ES');
+
+  const citas = document.getElementById('c-citas') as HTMLInputElement | null;
+  const pct = document.getElementById('c-pct') as HTMLInputElement | null;
+  const valor = document.getElementById('c-valor') as HTMLInputElement | null;
+
+  function pintar() {
+    if (!citas || !pct || !valor) return;
+    const c = Number(citas.value);
+    const p = Number(pct.value);
+    const v = Number(valor.value);
+
+    const perdidasAnyo = Math.round((c * p) / 100) * 12;
+    const coste = perdidasAnyo * v;
+    const objetivo = 8;
+    const recupera = p > objetivo ? Math.round((c * (p - objetivo)) / 100) * 12 * v : 0;
+
+    const set = (sel: string, txt: string) => {
+      const el = document.querySelector(sel);
+      if (el) el.textContent = txt;
+    };
+    set('[data-out="citas"]', num.format(c));
+    set('[data-out="pct"]', p + ' %');
+    set('[data-out="valor"]', v + ' €');
+    set('#c-total', eur.format(coste));
+    set('#c-citasperdidas', num.format(perdidasAnyo));
+    set(
+      '#c-recupera',
+      recupera > 0 ? eur.format(recupera) : 'ya estás por debajo',
+    );
+  }
+
+  [citas, pct, valor].forEach((el) => el?.addEventListener('input', pintar));
+  pintar();
+</script>

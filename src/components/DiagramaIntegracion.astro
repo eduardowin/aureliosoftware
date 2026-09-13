@@ -1,0 +1,109 @@
+---
+// Diagrama de integración: las herramientas sueltas de una clínica
+// conectadas entre sí. Animación por CSS, sin JavaScript.
+const nodos = [
+  { x: 210, y: 34, t: 'Software dental' },
+  { x: 357, y: 84, t: 'Agenda web' },
+  { x: 301, y: 164, t: 'Facturación' },
+  { x: 119, y: 164, t: 'WhatsApp' },
+  { x: 63, y: 84, t: 'Informes' },
+];
+const cx = 210;
+const cy = 105;
+---
+
+<div class="dgm">
+  <div class="dgm-cab">
+    <span class="dgm-tit">Todo conectado</span>
+    <span class="dgm-sub">Sin cambiar tu programa</span>
+  </div>
+
+  <svg viewBox="0 0 420 210" role="img"
+    aria-label="Diagrama: el software dental, la agenda web, la facturación, WhatsApp y los informes conectados entre sí">
+    {nodos.map((n, i) => (
+      <line
+        class="hilo"
+        x1={cx} y1={cy} x2={n.x} y2={n.y}
+        style={`animation-delay:${i * 0.35}s`}
+      />
+    ))}
+
+    <circle class="pulso" cx={cx} cy={cy} r="30" />
+    <circle class="nucleo" cx={cx} cy={cy} r="19" />
+    <text class="et-nucleo" x={cx} y={cy + 4}>API</text>
+
+    {nodos.map((n, i) => (
+      <g class="nodo" style={`animation-delay:${i * 0.35 + 0.25}s`}>
+        <circle cx={n.x} cy={n.y} r="8" />
+        <text
+          x={n.x}
+          y={n.y < cy ? n.y - 15 : n.y + 23}
+          text-anchor={n.x < 110 ? 'start' : n.x > 310 ? 'end' : 'middle'}
+        >{n.t}</text>
+      </g>
+    ))}
+  </svg>
+
+  <p class="dgm-pie">
+    Lo que hoy pasa de un sitio a otro a mano, pasa solo.
+  </p>
+</div>
+
+<style>
+  .dgm {
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 16px 18px 12px;
+    box-shadow: var(--sombra);
+  }
+  .dgm-cab {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 12px; margin-bottom: 4px;
+  }
+  .dgm-tit { font-weight: 600; font-size: .95rem; letter-spacing: -0.02em; }
+  .dgm-sub { font-size: .8rem; color: var(--texto-suave); }
+  .dgm svg { width: 100%; height: auto; display: block; overflow: visible; }
+
+  .hilo {
+    stroke: var(--coral);
+    stroke-width: 1.6;
+    stroke-dasharray: 5 5;
+    opacity: 0;
+    animation: aparece .5s ease forwards, fluye 1.1s linear infinite;
+  }
+  @keyframes aparece { to { opacity: .75; } }
+  @keyframes fluye { to { stroke-dashoffset: -10; } }
+
+  .nucleo { fill: var(--coral); }
+  .et-nucleo {
+    fill: #fff; font-size: 11px; font-weight: 700;
+    text-anchor: middle; letter-spacing: .04em;
+  }
+  .pulso {
+    fill: var(--coral); opacity: .18;
+    transform-origin: 210px 105px;
+    animation: latido 2.6s ease-in-out infinite;
+  }
+  @keyframes latido {
+    0%, 100% { transform: scale(1); opacity: .18; }
+    50%      { transform: scale(1.28); opacity: .06; }
+  }
+
+  .nodo { opacity: 0; animation: entra .45s ease forwards; }
+  .nodo circle { fill: #fff; stroke: var(--coral); stroke-width: 2.2; }
+  .nodo text { fill: var(--texto-suave); font-size: 11.5px; font-weight: 500; }
+  .nodo:hover circle { fill: var(--coral); }
+  .nodo:hover text { fill: var(--texto); }
+  @keyframes entra { to { opacity: 1; } }
+
+  .dgm-pie {
+    margin: 6px 0 0; font-size: .78rem;
+    color: var(--texto-suave); text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hilo, .nodo, .pulso { animation: none; opacity: .75; }
+    .nodo { opacity: 1; }
+  }
+</style>

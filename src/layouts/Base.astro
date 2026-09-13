@@ -1,4 +1,7 @@
 ---
+import AvisoSuperior from '../components/AvisoSuperior.astro';
+import BotonCita from '../components/BotonCita.astro';
+
 export interface Props {
   title: string;
   description: string;
@@ -54,6 +57,8 @@ const nav = [
   { href: '/sobre-mi', label: 'Sobre mí' },
 ];
 const path = Astro.url.pathname;
+// La barra de aviso no se muestra en la propia página de Verifactu
+const mostrarAviso = !path.startsWith('/verifactu');
 ---
 
 <!doctype html>
@@ -94,7 +99,8 @@ const path = Astro.url.pathname;
       --tarjeta: #ffffff;
       --sombra: 0 1px 2px rgba(16,24,40,.04), 0 4px 12px rgba(16,24,40,.05);
       --sombra-alta: 0 2px 4px rgba(16,24,40,.05), 0 12px 28px rgba(16,24,40,.09);
-      --max: 1120px;
+      --max: 1240px;
+      --azul-marca: #12395c;
       --coral: #ff6347;
       --coral-osc: #e8543a;
       --coral-tenue: #ffe8e3;
@@ -125,9 +131,16 @@ const path = Astro.url.pathname;
     p { margin: 0 0 1.15em; }
     a { color: var(--azul); text-underline-offset: 3px; }
 
-    .env { max-width: var(--max); margin-inline: auto; padding-inline: 24px; }
-    section { padding-block: clamp(72px, 11vw, 136px); }
-    main > section:first-child { padding-top: clamp(36px, 5vw, 60px); }
+    .env { max-width: var(--max); margin-inline: auto; padding-inline: 20px; }
+    section { padding-block: 5rem; }
+    main > section:first-child { padding-top: 2rem; }
+
+    /* Por debajo de 991px, tecla.io pasa a medidas fluidas */
+    @media (max-width: 991px) {
+      .env { padding-inline: 4.4vw; }
+      section { padding-block: 8vw; }
+      main > section:first-child { padding-top: 5vw; }
+    }
     .alt { background: var(--fondo-alt); }
 
     .btn {
@@ -140,7 +153,7 @@ const path = Astro.url.pathname;
     .btn-2 { background: #fff; color: var(--texto); border-color: rgba(16,24,40,.1); }
     .btn-2:hover { background: var(--coral-tenue); border-color: var(--coral); color: var(--texto); transform: translateY(-1px); box-shadow: none; }
     .btn-alerta {
-      display: inline-flex; align-items: center; gap: 9px;
+      display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 28px; border-radius: 4px;
       background: var(--ambar); color: var(--texto); text-decoration: none;
       font-weight: 500; font-size: 1rem; line-height: 1.1; border: 1px solid var(--ambar);
@@ -148,6 +161,11 @@ const path = Astro.url.pathname;
     }
     .btn-alerta:hover { background: var(--ambar-osc); border-color: var(--ambar-osc); color: var(--texto); transform: translateY(-1px); box-shadow: var(--sombra); }
     .btn-alerta svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+    .btn-cita {
+      display: inline-flex; align-items: center; gap: 9px;
+    }
+    .btn-cita svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
     .btn, .btn-2, .btn-wa, .btn-alerta { vertical-align: middle; margin-bottom: 10px; }
 
@@ -170,20 +188,24 @@ const path = Astro.url.pathname;
     }
     header.top .env {
       display: flex; align-items: center; justify-content: space-between;
-      gap: 18px; padding-block: 17px; flex-wrap: wrap;
+      gap: 12px; padding-block: 7px; flex-wrap: wrap;
     }
     .marca {
       font-weight: 700; font-size: 1.08rem; text-decoration: none;
-      color: var(--texto); letter-spacing: -0.03em; white-space: nowrap;
+      color: var(--coral); letter-spacing: -0.03em; white-space: nowrap;
+      display: inline-flex; align-items: center; gap: 8px;
     }
-    .marca span { color: var(--texto-suave); font-weight: 500; }
-    nav.principal { display: flex; gap: 26px; flex-wrap: wrap; align-items: center; }
+    .marca-ico { width: 26px; height: 26px; display: block; border-radius: 5px; flex-shrink: 0; }
+    .marca-txt { color: var(--coral); }
+    .marca-txt span { color: var(--azul-marca); }
+    nav.principal { display: flex; gap: 2px; flex-wrap: wrap; align-items: center; }
     nav.principal a {
       text-decoration: none; color: var(--texto-suave);
-      font-size: .94rem; font-weight: 500; transition: color .12s;
+      font-size: 1rem; font-weight: 400; line-height: 1.1;
+      padding: 14px 16px; transition: color .12s;
     }
     nav.principal a:hover, nav.principal a[aria-current='page'] { color: var(--texto); }
-    nav.principal a.btn { color: var(--texto); }
+    nav.principal a.btn { color: var(--texto); margin-bottom: 0; }
     nav.principal a.btn:hover { color: var(--texto); }
 
     footer.pie {
@@ -219,7 +241,7 @@ const path = Astro.url.pathname;
     details p { margin: 16px 0 0; color: var(--texto-suave); }
 
     .btn-wa {
-      display: inline-flex; align-items: center; gap: 9px;
+      display: inline-flex; align-items: center; gap: 8px;
       padding: 12px 28px; border-radius: 4px;
       background: var(--wasap); color: #fff; text-decoration: none;
       font-weight: 500; font-size: 1rem; line-height: 1.1; border: 1px solid var(--wasap);
@@ -249,14 +271,19 @@ const path = Astro.url.pathname;
 </head>
 
 <body>
+  {mostrarAviso && <AvisoSuperior />}
+
   <header class="top">
     <div class="env">
-      <a class="marca" href="/">Aurelio<span>&nbsp;Software</span></a>
+      <a class="marca" href="/">
+        <img class="marca-ico" src="/favicon.svg" alt="" width="26" height="26" />
+        <span class="marca-txt">Aurelio<span>Software</span></span>
+      </a>
       <nav class="principal">
         {nav.map((i) => (
           <a href={i.href} aria-current={path === i.href ? 'page' : undefined}>{i.label}</a>
         ))}
-        <a class="btn" href="/contacto" style="padding:8px 26px">Diagnóstico gratuito</a>
+        <BotonCita style="padding:8px 22px" />
       </nav>
     </div>
   </header>
