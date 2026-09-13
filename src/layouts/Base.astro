@@ -11,6 +11,10 @@ export interface Props {
 
 const { title, description, canonical, faq } = Astro.props;
 const site = 'https://aureliosoftware.es';
+
+// Search Console: pega aquí el "content" del meta de verificación
+// (Search Console > Añadir propiedad > Prefijo de URL > Etiqueta HTML)
+const GSC = '';
 const url = canonical ?? new URL(Astro.url.pathname, site).href;
 
 const zonas = [
@@ -69,6 +73,7 @@ const mostrarAviso = !path.startsWith('/verifactu');
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={url} />
+  {GSC && <meta name="google-site-verification" content={GSC} />}
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content={title} />
